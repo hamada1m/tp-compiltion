@@ -1,0 +1,141 @@
+Steps to Create a compilteur
+
+1: Define the Problem
+
+The task of the lexical analyzer is to:
+
+Identify keywords such as var, begin, end, if, then, else, programm.
+
+Recognize identifiers, which are alphanumeric sequences starting with a letter.
+
+Parse numbers, including integers and decimals.
+
+Detect operators, such as <, <=, >, >=, ==, and <>.
+
+Mark any other input as unknown tokens.
+
+
+
+2: Setup the Environment
+
+1. Install a C compiler such as GCC.
+
+
+2. Use a text editor or IDE to write the code.
+
+
+3. Prepare a sample source code input for testing.
+
+
+
+
+3: Define Token Types
+
+Create an enum type to represent categories of lexemes:
+
+CATEGORY_IDENTIFIER
+
+CATEGORY_NUMBER
+
+CATEGORY_OPERATOR
+
+CATEGORY_KEYWORD
+
+CATEGORY_UNKNOWN
+
+
+
+
+4: Define Keywords
+
+Define a list of reserved keywords and a function to check if a word matches any of these keywords. Example:
+
+const char *reserved[] = {"var", "begin", "end", "if", "then", "else", "programm"};
+
+Use strcmp to compare input strings with the reserved keywords.
+
+
+
+
+5: Implement Token Display Function
+
+Create a function to display each token with its type and value. Example:
+
+void showToken(LexemeType type, const char *value) {
+    printf("[%s]: %s\n", type_names[type], value);
+}
+
+
+
+6: Write the Main Lexical Analyzer Logic
+
+1. Loop through the source code character by character.
+
+
+2. Use a buffer to accumulate characters for tokens.
+
+
+3. Classify characters based on their type:
+
+Alphabetic characters form identifiers or keywords.
+
+Digits form numbers.
+
+Special characters (<, >, ?? form operators.
+
+Everything else is classified as unknown.
+
+
+
+4. Transition between states based on the current character, as follows:
+
+Identifiers: Start with a letter, continue with letters or digits.
+
+Numbers: Start with a digit, continue with digits or a decimal point.
+
+Operators: Match single or double-character operators.
+
+Unknowns: Handle all other characters.
+
+
+7: Handle Input and Output
+
+
+
+1. Define the source code as a string input in the main() function.
+
+
+2. Pass this string to the lexical analyzer for processing.
+
+
+3. Print each token type and value using the display function.
+
+
+8: Test the Program
+
+1. Compile the program using a C compiler (e.g., gcc).
+
+
+2. Run the executable with predefined source code.
+
+
+3. Verify the output for various cases:
+
+Correctly identified keywords, identifiers, numbers, and operators.
+
+Accurate handling of unknown tokens.
+
+
+
+9: Optimize and Refactor
+
+1. Review the code for redundant checks or inefficiencies.
+
+
+2. Test edge cases such as:
+
+Empty input.
+
+Long identifiers or numbers.
+
+Invalid characters.
